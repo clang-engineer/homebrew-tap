@@ -1,27 +1,27 @@
 class Themeset < Formula
   desc "Apply existing app themes together with explicit custom fallbacks"
   homepage "https://github.com/clang-engineer/themeset"
-  version "0.2.1"
+  version "0.2.2"
   license "MIT"
   depends_on "fzf"
 
   on_macos do
     if Hardware::CPU.arm?
-      url "https://github.com/clang-engineer/themeset/releases/download/v0.2.1/themeset-0.2.1-darwin-arm64.tar.gz"
-      sha256 "626441b40fc330c81069840ad5ecb093cf279ab0e5ade4e184bebd93498edd80"
+      url "https://github.com/clang-engineer/themeset/releases/download/v0.2.2/themeset-0.2.2-darwin-arm64.tar.gz"
+      sha256 "e733e7fe964817c634aa27f1d09c262a76b42f25a8e3a21d1e8b5501d4e8d6f0"
     else
-      url "https://github.com/clang-engineer/themeset/releases/download/v0.2.1/themeset-0.2.1-darwin-amd64.tar.gz"
-      sha256 "fc499a8705b36d48df8f0dc234cfdbaeee5e525ad6bcda936d6c1b293cbfa925"
+      url "https://github.com/clang-engineer/themeset/releases/download/v0.2.2/themeset-0.2.2-darwin-amd64.tar.gz"
+      sha256 "3449b1c0d831ac74ba75dcc567ce62951c1c28747125878737f18008eda1e8b4"
     end
   end
 
   on_linux do
     if Hardware::CPU.arm?
-      url "https://github.com/clang-engineer/themeset/releases/download/v0.2.1/themeset-0.2.1-linux-arm64.tar.gz"
-      sha256 "798e49b3c01f66525cb209a32f276957b21af3ec030c3f2a74623a1148152389"
+      url "https://github.com/clang-engineer/themeset/releases/download/v0.2.2/themeset-0.2.2-linux-arm64.tar.gz"
+      sha256 "95c009eff64933438366141de6d53d115c714ea7dc5506f6ca5723a024c2fe40"
     else
-      url "https://github.com/clang-engineer/themeset/releases/download/v0.2.1/themeset-0.2.1-linux-amd64.tar.gz"
-      sha256 "45aee70bdb9faeff7020e50a327b9c580040fc817ae79c383eaf2a737b469d8b"
+      url "https://github.com/clang-engineer/themeset/releases/download/v0.2.2/themeset-0.2.2-linux-amd64.tar.gz"
+      sha256 "5b8612010edefeb8d14d2d179d22bb2ca2e6065ba8e75c3aa26d9e7bb88a85cb"
     end
   end
 
@@ -29,10 +29,15 @@ class Themeset < Formula
     bin.install "themeset"
     pkgshare.install "licenses", "THIRD_PARTY_NOTICES.md"
     generate_completions_from_executable(bin/"themeset", "completion", shells: [:bash, :zsh, :fish])
+    (share/"fish/vendor_conf.d/themeset.fish").write <<~FISH
+      if status is-interactive
+        "#{bin}/themeset" completion fish | source
+      end
+    FISH
   end
 
   test do
-    assert_match "v0.2.1", shell_output("#{bin}/themeset --version")
+    assert_match "v0.2.2", shell_output("#{bin}/themeset --version")
     assert_match "ghostty", shell_output("#{bin}/themeset list tools")
   end
 end
