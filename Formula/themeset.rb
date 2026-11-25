@@ -1,27 +1,27 @@
 class Themeset < Formula
   desc "Apply existing app themes together with explicit custom fallbacks"
   homepage "https://github.com/clang-engineer/themeset"
-  version "0.2.0"
+  version "0.2.1"
   license "MIT"
   depends_on "fzf"
 
   on_macos do
     if Hardware::CPU.arm?
-      url "https://github.com/clang-engineer/themeset/releases/download/v0.2.0/themeset-0.2.0-darwin-arm64.tar.gz"
-      sha256 "2ddab5fe7d2a15cacfd21eeb37aeea541d41d6ef766c920ee4b276d403736111"
+      url "https://github.com/clang-engineer/themeset/releases/download/v0.2.1/themeset-0.2.1-darwin-arm64.tar.gz"
+      sha256 "626441b40fc330c81069840ad5ecb093cf279ab0e5ade4e184bebd93498edd80"
     else
-      url "https://github.com/clang-engineer/themeset/releases/download/v0.2.0/themeset-0.2.0-darwin-amd64.tar.gz"
-      sha256 "3c6b44d86cd59c6d46880ba18d7382f11b6b9e816fb5198072a66c65db470564"
+      url "https://github.com/clang-engineer/themeset/releases/download/v0.2.1/themeset-0.2.1-darwin-amd64.tar.gz"
+      sha256 "fc499a8705b36d48df8f0dc234cfdbaeee5e525ad6bcda936d6c1b293cbfa925"
     end
   end
 
   on_linux do
     if Hardware::CPU.arm?
-      url "https://github.com/clang-engineer/themeset/releases/download/v0.2.0/themeset-0.2.0-linux-arm64.tar.gz"
-      sha256 "caa202da468f12262453ba84ca353516c973864538304fa04a9408902e8635c0"
+      url "https://github.com/clang-engineer/themeset/releases/download/v0.2.1/themeset-0.2.1-linux-arm64.tar.gz"
+      sha256 "798e49b3c01f66525cb209a32f276957b21af3ec030c3f2a74623a1148152389"
     else
-      url "https://github.com/clang-engineer/themeset/releases/download/v0.2.0/themeset-0.2.0-linux-amd64.tar.gz"
-      sha256 "d44020089306305958090ea8115f8cb50289bfadd029cfef8893b55f49ae40db"
+      url "https://github.com/clang-engineer/themeset/releases/download/v0.2.1/themeset-0.2.1-linux-amd64.tar.gz"
+      sha256 "45aee70bdb9faeff7020e50a327b9c580040fc817ae79c383eaf2a737b469d8b"
     end
   end
 
@@ -32,7 +32,7 @@ class Themeset < Formula
   end
 
   test do
-    assert_match "v0.2.0", shell_output("#{bin}/themeset --version")
+    assert_match "v0.2.1", shell_output("#{bin}/themeset --version")
     assert_match "ghostty", shell_output("#{bin}/themeset list tools")
   end
 end
